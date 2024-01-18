@@ -19,14 +19,15 @@
 
 <script setup>
 
-const emit = defineEmits([ 'keyPressed' ])
+const props = defineProps([ 'guessedLetters' ])
 
+const emit = defineEmits([ 'keyPressed' ])
 
 
 const handleClick = (key) =>
 {
     { emit('keyPressed', key) }
-    console.log(key)
+
 }
 
 const keyboardLayout = [
@@ -37,9 +38,22 @@ const keyboardLayout = [
 
 const keyClass = (key) =>
 {
-    return key === 'Backspace' || key === 'Enter' ? 'bigKey' : 'key'
-}
+    let classes = [ 'key' ]
 
+    if (key === 'Backspace' || key === 'Enter') {
+        classes.push(key === 'Backspace' ? 'bigKey' : 'key')
+    } else if (props.guessedLetters.found.includes(key)) {
+        classes.push('foundKey')
+    } else if (props.guessedLetters.hint.includes(key)) {
+        classes.push('hintKey')
+    } else if (props.guessedLetters.notFound.includes(key)) {
+        classes.push('notFoundKey')
+    } else {
+        classes.push('defaultKey')
+    }
+
+    return classes.join(' ')
+}
 
 </script>
 
@@ -63,7 +77,8 @@ const keyClass = (key) =>
 }
 
 .key,
-.bigKey {
+.bigKey,
+.defaultKey {
 
     border: none;
     border-radius: 5px;
@@ -89,5 +104,17 @@ const keyClass = (key) =>
 .bigKey {
     width: 95px;
     font-size: 16px;
+}
+
+.foundKey {
+    background-color: green;
+}
+
+.hintKey {
+    background-color: yellow;
+}
+
+.notFoundKey {
+    background-color: rgb(104, 100, 100);
 }
 </style>

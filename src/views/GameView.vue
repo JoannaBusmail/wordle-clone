@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/no-unused-vars -->
 <template>
     <main>
-
         <Container v-if="!showResult">
             <TitleText text='Wordle game'>
             </TitleText>
@@ -108,7 +107,6 @@ const getResult = () =>
     }
 
 }
-
 
 
 
