@@ -11,7 +11,8 @@
                     :word="guess"
                     :solution="randomWord"
                     :enter="index < row"
-                ></LettersRow>
+                >
+                </LettersRow>
             </div>
             <KeyBoard
                 @keyPressed="handleLetter"
@@ -47,7 +48,8 @@ const guessedLetters = reactive({
     hint: []
 })
 const showResult = ref(false)
-const won = ref(false)
+const won = ref('')
+
 
 
 //

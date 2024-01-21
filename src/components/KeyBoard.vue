@@ -41,7 +41,7 @@ const keyClass = (key) =>
     let classes = [ 'key' ]
 
     if (key === 'Backspace' || key === 'Enter') {
-        classes.push(key === 'Backspace' ? 'bigKey' : 'key')
+        classes.push('bigKey')
     } else if (props.guessedLetters.found.includes(key)) {
         classes.push('foundKey')
     } else if (props.guessedLetters.hint.includes(key)) {
